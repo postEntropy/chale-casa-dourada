@@ -1,13 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Navbar Glassmorphism on Scroll
+    // 1. Navbar and FAB on Scroll
     const navbar = document.getElementById('navbar');
+    const fab = document.querySelector('.fab');
 
     window.addEventListener('scroll', () => {
+        // Navbar glass effect
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
+        }
+
+        // FAB visibility (reveal after hero)
+        if (window.scrollY > 300) {
+            fab.classList.remove('hidden');
+        } else {
+            fab.classList.add('hidden');
         }
     });
 
