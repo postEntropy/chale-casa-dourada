@@ -1,0 +1,6 @@
+node_modules/
+.gemini/
+.DS_Store
+dist/
+gallery.html
+*.log
