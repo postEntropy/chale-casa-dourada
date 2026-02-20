@@ -1,8 +1,0 @@
-assets/
-firebase.json
-gallery.html
-index.css
-index.html
-main.js
-output.txt
-package.json
