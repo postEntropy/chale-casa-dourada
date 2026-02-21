@@ -89,11 +89,37 @@ document.addEventListener('DOMContentLoaded', () => {
         header.addEventListener('click', () => {
             const item = header.parentElement;
             item.classList.toggle('active');
-
-            // Close other items (optional)
-            // document.querySelectorAll('.accordion-item').forEach(other => {
-            //     if (other !== item) other.classList.remove('active');
-            // });
         });
+    });
+
+    // 7. Lightbox Gallery
+    const lightbox     = document.getElementById('lightbox');
+    const lightboxImg  = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    document.querySelectorAll('.lightbox-trigger').forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+        document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    // Close when clicking outside the image
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // Close with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
     });
 });
