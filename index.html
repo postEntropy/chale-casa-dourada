@@ -192,8 +192,6 @@
                 </div>
                 <div class="gallery-item reveal"><img src="assets/p7.jpg" alt="Foto do Chalé" class="lightbox-trigger">
                 </div>
-                <div class="gallery-item tall reveal"><img src="assets/p29.jpg" alt="Foto do Chalé"
-                        class="lightbox-trigger"></div>
                 <div class="gallery-item reveal"><img src="assets/p8.jpg" alt="Foto do Chalé" class="lightbox-trigger">
                 </div>
                 <div class="gallery-item reveal"><img src="assets/p9.jpg" alt="Foto do Chalé" class="lightbox-trigger">
@@ -228,23 +226,15 @@
                 </div>
                 <div class="gallery-item reveal"><img src="assets/p22.jpg" alt="Foto do Chalé" class="lightbox-trigger">
                 </div>
-                <div class="gallery-item reveal"><img src="assets/p23.jpg" alt="Foto do Chalé" class="lightbox-trigger">
-                </div>
-                <div class="gallery-item reveal"><img src="assets/p24.jpg" alt="Foto do Chalé" class="lightbox-trigger">
-                </div>
                 <div class="gallery-item reveal"><img src="assets/p25.jpg" alt="Foto do Chalé" class="lightbox-trigger">
                 </div>
                 <div class="gallery-item reveal"><img src="assets/p26.jpg" alt="Foto do Chalé" class="lightbox-trigger">
                 </div>
                 <div class="gallery-item reveal"><img src="assets/p28.jpg" alt="Foto do Chalé" class="lightbox-trigger">
                 </div>
-                <div class="gallery-item reveal"><img src="assets/p30.jpg" alt="Foto do Chalé" class="lightbox-trigger">
-                </div>
                 <div class="gallery-item reveal"><img src="assets/p31.jpg" alt="Foto do Chalé" class="lightbox-trigger">
                 </div>
                 <div class="gallery-item reveal"><img src="assets/p32.jpg" alt="Foto do Chalé" class="lightbox-trigger">
-                </div>
-                <div class="gallery-item reveal"><img src="assets/p33.jpg" alt="Foto do Chalé" class="lightbox-trigger">
                 </div>
                 <div class="gallery-item reveal"><img src="assets/p34.jpg" alt="Foto do Chalé" class="lightbox-trigger">
                 </div>
@@ -344,7 +334,13 @@
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox-overlay">
         <button class="lightbox-close" id="lightbox-close">&#x2715;</button>
-        <img id="lightbox-img" src="" alt="Foto ampliada">
+        <button class="lightbox-prev" id="lightbox-prev">&#10094;</button>
+        <button class="lightbox-next" id="lightbox-next">&#10095;</button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Foto ampliada">
+            <video id="lightbox-video" controls autoplay loop playsinline
+                style="display:none; max-width:100%; max-height:90vh;"></video>
+        </div>
     </div>
 
     <!-- Scripts -->

@@ -799,7 +799,7 @@ footer {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.92);
+    background: rgba(0, 0, 0, 0.95);
     z-index: 9999;
     align-items: center;
     justify-content: center;
@@ -810,18 +810,22 @@ footer {
     display: flex;
 }
 
-@keyframes fadeInLightbox {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+.lightbox-content {
+    position: relative;
+    max-width: 95vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#lightbox-img {
-    max-width: 92vw;
+@keyframes fadeInLightbox {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#lightbox-img, #lightbox-video {
+    max-width: 90vw;
     max-height: 90vh;
     object-fit: contain;
     border-radius: 0.75rem;
@@ -830,37 +834,58 @@ footer {
 }
 
 @keyframes zoomInImg {
-    from {
-        transform: scale(0.85);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
-.lightbox-close {
+.lightbox-close, .lightbox-prev, .lightbox-next {
     position: absolute;
-    top: 1.2rem;
-    right: 1.5rem;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: #fff;
-    font-size: 1.4rem;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease, transform 0.2s ease;
-    line-height: 1;
+    transition: all 0.3s ease;
+    z-index: 10001;
 }
 
-.lightbox-close:hover {
+.lightbox-close {
+    top: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+}
+
+.lightbox-prev, .lightbox-next {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-prev { left: 2rem; }
+.lightbox-next { right: 2rem; }
+
+.lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
     background: rgba(255, 255, 255, 0.25);
-    transform: rotate(90deg);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-close:hover { transform: rotate(90deg); }
+
+@media (max-width: 768px) {
+    .lightbox-prev, .lightbox-next {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
 }
