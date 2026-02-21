@@ -1,0 +1,8 @@
+assets/
+final_check.txt
+firebase.json
+gallery.html
+index.css
+index.html
+main.js
+package.json
