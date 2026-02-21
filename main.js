@@ -92,82 +92,66 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 7. Lightbox Gallery with Video Support and Navigation
+    // 7. Gallery Lightbox
     const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxVideo = document.getElementById('lightbox-video');
-    const lightboxClose = document.getElementById('lightbox-close');
-    const lightboxPrev = document.getElementById('lightbox-prev');
-    const lightboxNext = document.getElementById('lightbox-next');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbVideo = document.getElementById('lightbox-video');
+    const lbClose = document.getElementById('lightbox-close');
+    const lbPrev = document.getElementById('lightbox-prev');
+    const lbNext = document.getElementById('lightbox-next');
+    const lbCounter = document.getElementById('lb-counter');
+    const lbBackdrop = lightbox.querySelector('.lb-backdrop');
 
-    let currentGalleryItems = [];
-    let currentIndex = 0;
+    const items = Array.from(document.querySelectorAll('.gallery-item[data-src]'));
+    let current = 0;
 
-    function updateGalleryItems() {
-        currentGalleryItems = Array.from(document.querySelectorAll('.lightbox-trigger'));
-    }
+    function openLightbox(index) {
+        current = ((index % items.length) + items.length) % items.length;
+        const item = items[current];
+        const type = item.dataset.type;
+        const src = item.dataset.src;
 
-    function showMedia(index) {
-        if (index < 0) index = currentGalleryItems.length - 1;
-        if (index >= currentGalleryItems.length) index = 0;
-        currentIndex = index;
+        // Reset both elements
+        lbImg.style.display = 'none';
+        lbVideo.style.display = 'none';
+        lbVideo.pause();
 
-        const item = currentGalleryItems[currentIndex];
-        const isVideo = item.tagName.toLowerCase() === 'video' || item.querySelector('source');
-
-        // Reset
-        lightboxImg.style.display = 'none';
-        lightboxVideo.style.display = 'none';
-        lightboxVideo.pause();
-
-        if (isVideo) {
-            const videoSrc = item.querySelector('source') ? item.querySelector('source').src : item.src;
-            lightboxVideo.src = videoSrc;
-            lightboxVideo.style.display = 'block';
+        if (type === 'video') {
+            lbVideo.src = src;
+            lbVideo.style.display = 'block';
+            lbVideo.play();
         } else {
-            lightboxImg.src = item.src;
-            lightboxImg.style.display = 'block';
+            lbImg.src = src;
+            lbImg.style.display = 'block';
         }
 
+        lbCounter.textContent = `${current + 1} / ${items.length}`;
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 
     function closeLightbox() {
         lightbox.classList.remove('active');
-        lightboxVideo.pause();
-        lightboxVideo.src = '';
-        lightboxImg.src = '';
+        lbVideo.pause();
+        lbVideo.src = '';
+        lbImg.src = '';
         document.body.style.overflow = '';
     }
 
-    // Initial event listeners for triggers
-    document.addEventListener('click', (e) => {
-        const trigger = e.target.closest('.lightbox-trigger');
-        if (trigger) {
-            updateGalleryItems();
-            const index = currentGalleryItems.indexOf(trigger);
-            if (index !== -1) showMedia(index);
-        }
+    // Clicks on gallery items (works for both img and video children)
+    items.forEach((item, i) => {
+        item.addEventListener('click', () => openLightbox(i));
     });
 
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); showMedia(currentIndex - 1); });
-    lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); showMedia(currentIndex + 1); });
+    lbClose.addEventListener('click', closeLightbox);
+    lbBackdrop.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', () => openLightbox(current - 1));
+    lbNext.addEventListener('click', () => openLightbox(current + 1));
 
-    // Close when clicking outside the content
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
-            closeLightbox();
-        }
-    });
-
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('active')) return;
-
         if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') showMedia(currentIndex - 1);
-        if (e.key === 'ArrowRight') showMedia(currentIndex + 1);
+        if (e.key === 'ArrowLeft') openLightbox(current - 1);
+        if (e.key === 'ArrowRight') openLightbox(current + 1);
     });
 });

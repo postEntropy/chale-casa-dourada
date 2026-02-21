@@ -1,0 +1,20 @@
+total 32
+drwxr-xr-x. 1 leonardo leonardo  166 Feb 21 16:55 .
+drwxr-xr-x. 1 leonardo leonardo  300 Feb 21 16:56 ..
+-rw-r--r--. 1 leonardo leonardo   90 Feb 21 16:53 COMMIT_EDITMSG
+-rw-r--r--. 1 leonardo leonardo  307 Feb 21 14:37 config
+-rw-r--r--. 1 leonardo leonardo   73 Feb 20 18:27 description
+-rw-r--r--. 1 leonardo leonardo  109 Feb 21 16:53 FETCH_HEAD
+-rw-r--r--. 1 leonardo leonardo   21 Feb 21 10:36 HEAD
+drwxr-xr-x. 1 leonardo leonardo  556 Feb 20 18:27 hooks
+-rw-r--r--. 1 leonardo leonardo 4702 Feb 21 16:53 index
+drwxr-xr-x. 1 leonardo leonardo   14 Feb 20 18:27 info
+drwxr-xr-x. 1 leonardo leonardo   16 Feb 20 18:27 logs
+drwxr-xr-x. 1 leonardo leonardo  428 Feb 21 16:53 objects
+-rw-r--r--. 1 leonardo leonardo   41 Feb 21 16:46 ORIG_HEAD
+drwxr-xr-x. 1 leonardo leonardo   32 Feb 20 18:29 refs
+977f7ad feat: lightbox com suporte a vídeo, navegação por setas e limpeza de fotos indesejadas
+1d27386 fix: corrigir tag de vídeo na galeria e preencher buracos
+bd318de feat: galeria expandida com 40 fotos e 4 videos selecionados
+1411472 chore: simplificar nomes de fotos novas e limpar duplicatas
+948492c feat: adicionar novas fotos da galeria e remover duplicatas
